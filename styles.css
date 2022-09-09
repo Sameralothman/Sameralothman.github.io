@@ -14,7 +14,7 @@ header{
     left: 0;
 }
 header h1{
-    color: black;
+    color: white;
     border: 8px solid black;
     padding: 6px 12px;
     display: inline-block;
@@ -22,14 +22,15 @@ header h1{
 }
 .banner{
     position: relative;
-    left: 300px;
+
 }
-.banner imag{ 
+.banner img{ 
     max-width: 100%;
+    width: 100%;
     
 }
 .banner .Welcome{
-    background-color: rgba(1, 1, 70, 0.699);
+    background-color:rgb(19, 0, 185);
     color: white;
     position: absolute;
     left: 0%;
@@ -59,11 +60,11 @@ nav li{
 }
 nav li a{
     text-decoration: none;
-    color:firebrick
+    color:crimson
 }
 main{
     max-width: 100%;
-    width: 1200px;
+    width: 100%;
     margin: 80px auto ;
     padding: 0 40px;
     box-sizing: border-box;
@@ -95,9 +96,11 @@ article p{
 section.join{
     background: #f4f4f4;
     text-align: center;
-    padding: 60px 20px;
+    padding: 60px 0;
     color: #4b4b4b;
+    width: 100%;
 }
+
 .join h2{
     font-size: 36px; 
     
@@ -127,4 +130,25 @@ form input:focus{
 }
 form input:valid{
     border: 4px solid rgba(119, 197, 1, 0.959);
+}
+
+@media screen and (max-width: 960px) {
+    .banner .Welcome h2 {
+        font-size: 40px;
+    }
+    
+}
+@media screen and (max-width:1920px) {
+    .banner .Welcome{
+        position: relative;
+        text-align: center;
+    }
+    .banner .Welcome br{
+        display: none;
+
+    }
+    .banner .Welcome h2{
+        font-size: 40px;
+    }
+    
 }
