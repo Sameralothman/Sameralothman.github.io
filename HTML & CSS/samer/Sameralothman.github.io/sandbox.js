@@ -8,7 +8,7 @@ function showSlides() {
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  slideIndex++;                                                /*denna loop kommer att blädra medllan blidna */          
+  slideIndex++;                                                /*denna loop kommer att blädra medllan bilder */          
   if (slideIndex > slides.length) {
     slideIndex = 1;
   }
