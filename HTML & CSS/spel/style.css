@@ -1,0 +1,136 @@
+#titleDiv{
+    text-align: center;
+    width: 100%;
+
+}
+
+#titleDiv > h {
+    margin: 0 auto;
+    font-size: xx-large;
+    color: white;
+    
+}
+
+:root {
+    --cell-size: 100px;                               /*båda cell-size och mark-size är variabler*/
+    --mark-size: calc(var(--cell-size) * .9);       /*det här kommer att vara hur stora dessa x och o.*/
+                                                /* multiplicera med 0.9 huvudsak att denna märkesstorlek ska vara 90% av cellstorleken*/
+  }
+  
+  body {
+    margin: 0;
+  }
+  
+  .board {        /*detta är elementet som omsluter alla våra celler*/
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto) /*automatisk storlek så att de kommer ha samma storlek som den enskilda cellen */
+  }
+  
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .cell.x,
+  .cell.circle {
+    cursor: not-allowed;
+  }
+  
+  .cell.x::before,
+  .cell.x::after,
+  .cell.circle::before {
+    background-color: black;
+  }
+  
+  .board.x .cell:not(.x):not(.circle):hover::before,      /*not selector är använd endast denna hover effect när man inte redan är på en x eller cirkelcell */
+  .board.x .cell:not(.x):not(.circle):hover::after,
+  .board.circle .cell:not(.x):not(.circle):hover::before {       /*not condition means only apply this hover effect when you are not on x or o */
+    background-color: lightgrey;
+  }
+  
+  .cell.x::before,
+  .cell.x::after,
+  .board.x .cell:not(.x):not(.circle):hover::before,   /* När man håller över en cell när det är en x kommer den här klassen att tillämpas på den*/
+  .board.x .cell:not(.x):not(.circle):hover::after{
+    content: '';
+    position: absolute; /*same amount of space between different edges*/
+    width: calc(var(--mark-size) * .15); /* 15% höjd av x*/
+    height: var(--mark-size);
+  }
+  
+  .cell.x::before,
+  .board.x .cell:not(.x):not(.circle):hover::before {
+    transform: rotate(45deg);
+  }
+  
+  .cell.x::after,
+  .board.x .cell:not(.x):not(.circle):hover::after {
+    transform: rotate(-45deg);
+  }
+  
+  .cell.circle::before,
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::before,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .cell.circle::before,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+  }
+  
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: white;
+  }
+  
+  .winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;                                                
+    right: 0;
+    bottom: 0;                                        
+    background-color:  black rgba(0, 0 0, 9); /* 9 = 90% transparent*/
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+  }
+  
+  .winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+  }
+  
+  .winning-message button:hover {
+    background-color: black;
+    color: white;
+    border-color: white;
+  }
+  
+  .winning-message.show {
+    display: flex;
+  }
